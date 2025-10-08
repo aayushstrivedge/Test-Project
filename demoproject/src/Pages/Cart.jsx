@@ -1,52 +1,57 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Layout from '../Layout/Layout'
+import { removeCart } from '../cart/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCart } from '../cart/cartSlice';
+
 
 const Cart = () => {
 
     const dispatch = useDispatch();
-    const { products, quantity, price, title, thumbnail } = useSelector((state) => state.cartProduct)
 
-    useEffect(() => {
-        dispatch(getCart())
-    }, [dispatch])
+    const cartItems = useSelector((state) => state.cartProduct.products)
 
-    useEffect(() => {
-        console.log(products);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(removeCart())
+    }
 
-    }, [products])
 
 
     return (
         <Layout>
             <section className='cartPage'>
-                <div className='cartContainer'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>image</th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            {products?.map((p, index) => (
-                                <tr key={index}>
-                                    <td><img src={p.thumbnail} alt="" /></td>
-                                    <td><h3>{p.title}</h3></td>
-                                    <td>${p.price}</td>
-                                    <td>{p.quantity}</td>
-                                    <td>
-                                        <button className="addToCartButton">Remove</button>
-                                    </td>
+                <h1>Your Cart</h1>
+                {cartItems.length === 0 ? (
+                    <div><h1>Your Cart is Empty</h1></div>
+                ) : (
+
+                    <div className='cartContainer'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>image</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Edit</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody >
+                                {cartItems?.map((p, index) => (
+                                    <tr key={index}>
+                                        <td><img src={p.images} alt="" /></td>
+                                        <td><h3>{p.title}</h3></td>
+                                        <td>${p.price}</td>
+                                        <td>{p.quantity}</td>
+                                        <td>
+                                            <button className="addToCartButton" onClick={handleSubmit}>Remove</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </section>
         </Layout>
     )

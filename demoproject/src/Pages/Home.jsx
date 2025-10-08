@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Layout/Layout';
 import { useDispatch, useSelector } from "react-redux"
 import { getProduct } from '../product/productSlice';
+import { addToCart } from '../cart/cartSlice';
 
 const Home = () => {
 
@@ -21,7 +22,7 @@ const Home = () => {
     // }, [])
 
     const dispatch = useDispatch();
-    const { product, loading, error } = useSelector(
+    const { product } = useSelector(
         (state) => state.products
     )
 
@@ -30,7 +31,13 @@ const Home = () => {
     }, [dispatch]
     )
 
-    console.log(product)
+    const handleSubmit = (e, p) => {
+        e.preventDefault();
+        dispatch(addToCart(p));
+        alert("Product added to cart")
+        // console.log(id);
+
+    }
 
     return (
         <Layout>
@@ -39,7 +46,7 @@ const Home = () => {
                     {product?.map((p) => (
                         <div className='product_card' key={p.id}>
                             <div className='productImage'>
-                                <img src={`${p.image}`} alt="Product" />
+                                <img src={`${p.images}`} alt="Product" />
                             </div>
                             <div className='productInfo'>
                                 <h1>{`${p.title}`}</h1>
@@ -47,9 +54,9 @@ const Home = () => {
                                 <p>
                                     {`${p.description}`}
                                 </p>
-                                <h5>{`Rating : ${p.rating.rate}`}</h5>
+                                {/* <h5>{`Rating : ${p.rating.rate}`}</h5> */}
                                 <h3>{`${Math.floor(p.price)}$`}</h3>
-                                <button className='addToCartButton' onClick={""}>Add to Cart</button>
+                                <button className='addToCartButton' onClick={(e) => handleSubmit(e, p)}>Add to Cart</button>
                             </div>
 
                         </div>
