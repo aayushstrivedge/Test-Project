@@ -15,12 +15,10 @@ const Cart = () => {
         dispatch(removeCart())
     }
 
-
-
     return (
         <Layout>
+            <h1>Your Cart</h1>
             <section className='cartPage'>
-                <h1>Your Cart</h1>
                 {cartItems.length === 0 ? (
                     <div><h1>Your Cart is Empty</h1></div>
                 ) : (
@@ -32,7 +30,6 @@ const Cart = () => {
                                     <th>image</th>
                                     <th>Product</th>
                                     <th>Price</th>
-                                    <th>Quantity</th>
                                     <th>Edit</th>
                                 </tr>
                             </thead>
@@ -42,7 +39,6 @@ const Cart = () => {
                                         <td><img src={p.images} alt="" /></td>
                                         <td><h3>{p.title}</h3></td>
                                         <td>${p.price}</td>
-                                        <td>{p.quantity}</td>
                                         <td>
                                             <button className="addToCartButton" onClick={handleSubmit}>Remove</button>
                                         </td>
@@ -52,6 +48,15 @@ const Cart = () => {
                         </table>
                     </div>
                 )}
+                <div className='chechoutContainer'>
+                    <h1>Checkout</h1>
+                    <hr />
+                    <div>
+                        <h3>Total : ${cartItems.price}</h3>
+                    </div>
+                    <button className='addToCartButton2' onClick={""}>CheckOut</button>
+
+                </div>
             </section>
         </Layout>
     )

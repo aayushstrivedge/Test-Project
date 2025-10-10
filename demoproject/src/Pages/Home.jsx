@@ -3,23 +3,11 @@ import Layout from '../Layout/Layout';
 import { useDispatch, useSelector } from "react-redux"
 import { getProduct } from '../product/productSlice';
 import { addToCart } from '../cart/cartSlice';
+import { sentToProductpage } from '../product/productPageSlice';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
 
-    // const [products, setProducts] = useState([]);
-
-    // const getAllProducts = async () => {
-    //     try {
-    //         const { data } = await axios.get("https://fakestoreapi.com/products")
-    //         setProducts(data);
-
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-    // useEffect(() => {
-    //     getAllProducts();
-    // }, [])
 
     const dispatch = useDispatch();
     const { product } = useSelector(
@@ -35,21 +23,23 @@ const Home = () => {
         e.preventDefault();
         dispatch(addToCart(p));
         alert("Product added to cart")
-        // console.log(id);
-
     }
 
     return (
         <Layout>
             <div>
                 <div className='productContainer' >
-                    {product?.map((p) => (
+                    {product?.map((p, index) => (
                         <div className='product_card' key={p.id}>
                             <div className='productImage'>
                                 <img src={`${p.images}`} alt="Product" />
                             </div>
                             <div className='productInfo'>
-                                <h1>{`${p.title}`}</h1>
+                                <NavLink to={`/products/${p.id}`} key={p.id}>
+                                    <h1 onClick={() => {
+                                        dispatch(sentToProductpage(p));
+                                    }}>{p.title}</h1>
+                                </NavLink>
                                 <h2>{`${p.category}`}</h2>
                                 <p>
                                     {`${p.description}`}
