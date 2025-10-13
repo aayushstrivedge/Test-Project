@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../Layout/Layout'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field } from 'formik'
 
 const Register = () => {
     return (

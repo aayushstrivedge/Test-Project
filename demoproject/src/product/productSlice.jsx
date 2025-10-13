@@ -14,18 +14,9 @@ const productSlice = createSlice({
         error: null
     },
     reducers: {
-        getProducts: (state, action) => {
-            const item = action.payload;
-            // const existingProduct = state.cartItem.find((product) => product.id === item.id)
-
-            // if (existingProduct) {
-            //     existingProduct.quanntity += 1;
-            // } else {
-            //     state.cartItem.push({ ...item, quantity: 1 })
-            // }
-            // state.quantity += 1
-            // state.totalPrice += item.price
-        }
+        // getProducts: (state, action) => {
+        //     const item = action.payload;
+        // }
     },
     extraReducers: (builder) => {
         builder

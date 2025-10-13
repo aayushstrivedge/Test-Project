@@ -3,43 +3,46 @@ import Layout from '../Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../cart/cartSlice';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Productpage = () => {
 
     const { id } = useParams()
     const dispatch = useDispatch();
     const productPageData = useSelector((state) => state.productPage.individualProduct)
+    const product = productPageData.find((p) => p.id === Number(id));
+
 
     const handleSubmit = (e, p) => {
         e.preventDefault();
         dispatch(addToCart(p));
-        alert("Product added to cart")
+        toast.success("Product added to cart!");
 
     }
-    const demoDunction = () => {
-
-    }
-
-    demoDunction()
 
     return (
         <Layout>
-            {productPageData.map((p) => (
-                <div key={p.id} className='productPageContainer'>
+            <ToastContainer />
+            {product ? (
+                <div key={product.id} className='productPageContainer'>
                     <div className='singleProductImage'>
-                        <img src={`${p.images}`} alt="productPhoto" />
+                        <img src={`${product.images}`} alt="productPhoto" />
                     </div>
                     <div className='singleProductDescription'>
-                        <h4>/{p.category}</h4>
-                        <h1>{p.title}</h1>
-                        <h2>${p.price}</h2>
-                        <h3>Rating : {p.rating}</h3>
-                        <button className='addToCartButton2' onClick={(e) => handleSubmit(e, p)}>Add to Cart</button>
-                        <p> {p.description}</p>
+                        <h4>/{product.category}</h4>
+                        <h1>{product.title}</h1>
+                        <h2>${product.price}</h2>
+                        <h3>Rating : {product.rating}</h3>
+                        <button className='addToCartButton2' onClick={(e) => handleSubmit(e, product)}>Add to Cart</button>
+                        <p> {product.description}</p>
                     </div>
                 </div>
-            )
-            )}
+            ) : (
+                <>
+                    <h1>Product Not found</h1>
+                </>)
+
+            }
         </Layout>
     )
 }

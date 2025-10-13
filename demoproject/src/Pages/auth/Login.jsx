@@ -5,25 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserData } from './dashboard';
 import { loginData } from './loginSlice';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const loginController = (values, { setSubmitting }) => {
+    const loginController = async (values, { setSubmitting }) => {
         setSubmitting(true)
+
         try {
             dispatch(loginData(values))
-            dispatch(getUserData(values)).unwrap()
-                .then(() => {
-                    navigate('/dashboard');
-                })
+            await dispatch(getUserData(values)).unwrap();
+            localStorage.setItem("auth", JSON.stringify(values))
+            toast.success("Login Successfull")
+            navigate('/dashboard');
+
         } catch (error) {
             console.log(error);
+            toast.error("Invalid Credentials.");
             setSubmitting(false)
         }
-
     }
     const validate = values => {
         const error = {};
@@ -34,6 +36,7 @@ const Login = () => {
     }
     return (
         <Layout>
+            <ToastContainer />
             <Formik
                 initialValues={{
                     username: "",
@@ -41,10 +44,8 @@ const Login = () => {
                     password: ""
                 }}
                 validate={validate}
-
                 onSubmit={loginController}
             >
-
                 {({ isSubmitting }) => (
                     <div className="form-container">
                         <Form className="login-form">

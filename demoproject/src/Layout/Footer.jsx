@@ -1,11 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='footerContainer'>
-            <h1>Footer Section for Site map icons and Nav Links </h1>
-        </div>
-    )
-}
+        <footer className="footerContainer">
+            <div className="footer-content">
+                <p>&copy; {new Date().getFullYear()} Demo Website. All rights reserved.</p>
 
-export default Footer
+                <ul className="footer-links">
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/about">About</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    <li><NavLink to="/privacy">Privacy Policy</NavLink></li>
+                </ul>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

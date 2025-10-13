@@ -9,19 +9,9 @@ const loginSlice = createSlice({
     reducers: {
         loginData: (state, actions) => {
             state.data = [actions.payload]
-
-            try {
-                alert("Login Successfully")
-
-            } catch (error) {
-                console.log(error);
-                alert("Invalid Credentials")
-            }
         }
     }
-
 })
-
 
 export const { loginData } = loginSlice.actions;
 
