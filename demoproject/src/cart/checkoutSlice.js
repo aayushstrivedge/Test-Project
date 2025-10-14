@@ -5,7 +5,6 @@ export const paymentData = createAsyncThunk("payment/checkout", async (values, {
 
     try {
         const response = await axios.get(`https://dummyjson.com/users/filter?key=bank.cardNumber&value=${values.cardnumber}`)
-        console.log(response.data.users[0].bank.cardNumber);
         return response.data;
     } catch (error) {
         console.error(error);

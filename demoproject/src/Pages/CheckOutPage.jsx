@@ -23,7 +23,6 @@ const CheckOutPage = () => {
             const savedCardNumber = result.users[0]?.bank?.cardNumber;
 
             if (savedCardNumber === values.cardnumber) {
-                console.log("Card Data Matched");
                 toast.success("Payment successful!");
 
                 // Clear the cart

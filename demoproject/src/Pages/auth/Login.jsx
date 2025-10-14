@@ -51,11 +51,11 @@ const Login = () => {
                         <Form className="login-form">
                             <h1>Login</h1>
 
-                            <label htmlFor="username" className="form-label">Name</label>
+                            <label htmlFor="userName" className="form-label">Name</label>
                             <Field
                                 type="text"
                                 id="userName"
-                                name="username"
+                                name="userName"
                                 className="form-input"
                             />
                             <ErrorMessage component="div" name='email' />

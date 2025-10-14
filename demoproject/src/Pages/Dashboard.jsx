@@ -8,8 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 const Dashboard = () => {
     let userData = useSelector((state) => state.loginAuth.data[0])
     const dashboardData = useSelector((state) => state.dashboardData.updateData[0])
-    console.log(dashboardData);
-
 
     const dispatch = useDispatch();
     const currentData = dashboardData || userData;
@@ -19,8 +17,6 @@ const Dashboard = () => {
         dispatch(updateDashboard(values))
         toast.success("User updated successfully")
     }
-    console.log(dashboardData);
-
 
     return (
         <Layout>
@@ -52,7 +48,7 @@ const Dashboard = () => {
                                     <Field
                                         type="text"
                                         id="userName"
-                                        name="username"
+                                        name="userName"
                                         className="form-input"
                                     />
                                     <label htmlFor="email" className="form-label">Email</label>

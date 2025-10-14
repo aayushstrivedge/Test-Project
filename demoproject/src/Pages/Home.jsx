@@ -8,17 +8,19 @@ import { NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 const Home = () => {
-
-
     const dispatch = useDispatch();
-    const { product } = useSelector(
-        (state) => state.products
-    )
+
+    const { product } = useSelector((state) => state.products)
+
+    const productsResults = useSelector((state) => state.searchResults)
+
+    const showResults = productsResults.results.products;
+
+    const hasSearchResults = showResults && product.length > 0;
 
     useEffect(() => {
-        dispatch(getProduct())
-    }, [dispatch]
-    )
+        dispatch(getProduct());
+    }, [dispatch]);
 
     const handleSubmit = (e, p) => {
         e.preventDefault();
@@ -30,8 +32,8 @@ const Home = () => {
         <Layout>
             <ToastContainer />
             <div className='productContainer' >
-                {product?.map((p, index) => (
-                    <div className='product_card' key={p.id}>
+                {(hasSearchResults ? showResults : product)?.map((p, index) => (
+                    <div className='product_card' key={index}>
                         <div className='productImage'>
                             <img src={`${p.images}`} alt="Product" loading='lazy' />
                         </div>
@@ -45,7 +47,6 @@ const Home = () => {
                             <p>
                                 {`${p.description}`}
                             </p>
-                            {/* <h5>{`Rating : ${p.rating.rate}`}</h5> */}
                             <h3>{`${Math.floor(p.price)}$`}</h3>
                             <button className='addToCartButton' onClick={(e) => handleSubmit(e, p)}>Add to Cart</button>
                         </div>

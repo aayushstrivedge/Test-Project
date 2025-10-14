@@ -494,3 +494,55 @@
 .logoutBtn {
   cursor: pointer;
 }
+
+#searchBox {
+  width: 150px;
+  height: 30px;
+  border-radius: 3px;
+  padding: 3px;
+  border: none;
+  font-size: medium;
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+#searchBox:focus {
+  outline: none;
+}
+
+.searchBtn {
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+  border-radius: 3px;
+  padding: 2px;
+  border: none;
+  font-size: medium;
+  font-weight: bold;
+  background-color: rgb(177, 176, 176);
+}
+
+.searchBtn:hover {
+  background-color: grey;
+}
+
+.inputListCont {
+  position: relative;
+}
+
+.suggetionBoxdiv {
+  width: 235px;
+  background-color: rgb(223, 215, 215);
+  position: absolute;
+  top: 32px;
+  color: black;
+  padding: 5px;
+  border-radius: 0px 0px 4px 4px;
+  display: none;
+}
+
+.inputListCont:hover {
+  .suggetionBoxdiv {
+    display: block;
+  }
+}

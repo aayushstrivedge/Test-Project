@@ -9,7 +9,7 @@ import Register from './Pages/auth/Register';
 import Dashboard from './Pages/Dashboard';
 import CheckOutPage from './Pages/CheckOutPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import ProtectedLogin from './components/ProtectedLogin';
+import SearchPage from './search/SearchPage';
 function App() {
   return (
     <>
@@ -18,10 +18,8 @@ function App() {
         <Route path="/todolist" element={<ListItem />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<ProductPage />} />
-        <Route path="/login" element={
-
-          <Login />
-        } />
+        <Route path="/searchresults" element={<SearchPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Dashboard" element={
           <ProtectedRoute>

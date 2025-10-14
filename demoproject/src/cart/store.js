@@ -7,6 +7,7 @@ import loginDataReducer from "../Pages/auth/loginSlice"
 import dashBoardReducer from "../Pages/auth/dashboard"
 import updatedDashboardReducer from "../Pages/auth/dashboardUpdateSlice"
 import paymentDataReducer from "./checkoutSlice"
+import searchResultsReducer from "../search/searchSlice"
 
 export const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
         loginAuth: loginDataReducer,
         dashboard: dashBoardReducer,
         dashboardData: updatedDashboardReducer,
-        payment: paymentDataReducer
+        payment: paymentDataReducer,
+        searchResults: searchResultsReducer,
     }
 })

@@ -12,9 +12,9 @@ const Register = () => {
                     address: "",
                     phoneNumber: ""
                 }}
-                onSubmit={(values) => {
-                    console.log("The form value is:", values);
-                }}
+            // onSubmit={(values) => {
+            //     console.log("The form value is:", values);
+            // }}
             >
                 {() => (
                     <div className="form-container">
